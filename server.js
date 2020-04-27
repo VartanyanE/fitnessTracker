@@ -28,8 +28,9 @@ app.get("/stats", function (req, res) {
 
 app.post("/api/workouts", ({ body }, res) => {
     Workout.create(body)
-        .then(dbWorkout => {
-            res.json(dbWorkout);
+        .then(({ _id }) => Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true }))
+        .then(dbworkout => {
+            res.json(dbworkout);
         })
         .catch(err => {
             res.json(err);
@@ -46,24 +47,34 @@ app.get("/api/workouts", (req, res) => {
     });
 })
 
-app.put("/api/workouts/:id", ({ params }, res) => {
-    Workout.update(
-        {
-            _id: mongojs.ObjectId(params.id)
-        },
+app.get("/api/workouts/range", (req, res) => {
+    Workout.find().limit(7)
+        .then(workout => res.json(workout))
+        .catch(e => console.error(e))
+    console.log(req.body)
+})
+
+
+app.put("/api/workouts/:id", (req, res) => {
+
+
+    Workout.findByIdAndUpdate(
+        req.params.id,
         {
             $set: {
-                read: true
+                exercises: req.body
+
             }
         },
 
-        (error, edited) => {
+
+        (error, data) => {
             if (error) {
                 console.log(error);
                 res.send(error);
             } else {
-                console.log(edited);
-                res.send(edited);
+                // console.log(edited);
+                res.send(data);
             }
         }
     );
