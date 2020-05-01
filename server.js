@@ -27,14 +27,7 @@ app.get("/stats", function (req, res) {
 });
 
 app.post("/api/workouts", ({ body }, res) => {
-    // Workout.create(body)
-    //     .then(({ _id }) => Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true }))
-    //     .then(dbworkout => {
-    //         res.json(dbworkout);
-    //     })
-    //     .catch(err => {
-    //         res.json(err);
-    //     });
+
     Workout.create({ day: new Date() })
         .then((data) => res.json(data))
         .catch(e => console.error(e))
@@ -60,9 +53,11 @@ app.get("/api/workouts/range", (req, res) => {
 app.put("/api/workouts/:id", (req, res) => {
 
 
+
     Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } }, { new: true, runValidators: true })
         // .then(() => res.sendStatus(200))
         .then((data) => res.json(data))
+
         .catch(e => console.error(e))
 });
 
