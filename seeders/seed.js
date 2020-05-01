@@ -7,7 +7,7 @@ const mongo = process.env.MONGODB_URI || "mongodb://mongouser:lakers323@ds147551
 mongoose.connect(mongo, {
   useNewUrlParser: true,
   useFindAndModify: false,
-  useMongoClient: true,
+
   useUnifiedTopology: true
 });
 let workoutSeed = [

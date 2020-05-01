@@ -8,7 +8,8 @@ const mongo = process.env.MONGODB_URI || "mongodb://mongouser:lakers323@ds147551
 mongoose.connect(mongo, {
     useNewUrlParser: true,
     useFindAndModify: false,
-    useMongoClient: true
+
+    useUnifiedTopology: true
 });
 const PORT = process.env.PORT || 3000;
 const Workout = require("./models/workout");
