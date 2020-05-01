@@ -2,9 +2,10 @@ const express = require("express");
 const mongojs = require("mongojs");
 const logger = require("morgan");
 const path = require("path");
-const mongoose = require("mongoose")
-
-mongoose.connect("mongodb://heroku_f0h2zbhm:k7d83i3l3jl32pn5res0i6gvjd@ds147551.mlab.com:47551/heroku_f0h2zbhm", {
+const mongoose = require("mongoose");
+require('dotenv').config();
+const mongo = process.env.MONGODB_URI || "";
+mongoose.connect(mongo, {
     useNewUrlParser: true,
     useFindAndModify: false
 });
