@@ -4,10 +4,11 @@ const logger = require("morgan");
 const path = require("path");
 const mongoose = require("mongoose");
 require('dotenv').config();
-const mongo = process.env.MONGODB_URI || "";
+const mongo = process.env.MONGODB_URI || "mongodb://mongouser:lakers323@ds147551.mlab.com:47551/heroku_f0h2zbhm";
 mongoose.connect(mongo, {
     useNewUrlParser: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useMongoClient: true
 });
 const PORT = process.env.PORT || 3000;
 const Workout = require("./models/workout");
