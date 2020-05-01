@@ -27,6 +27,7 @@ app.get("/stats", function (req, res) {
 });
 
 app.post("/api/workouts", ({ body }, res) => {
+
     Workout.create({ day: new Date() })
         .then((data) => res.json(data))
         .catch(e => console.error(e))
@@ -46,15 +47,20 @@ app.get("/api/workouts/range", (req, res) => {
     Workout.find().limit(7)
         .then(workout => res.json(workout))
         .catch(e => console.error(e))
-    console.log(req.body)
 })
 
 
 app.put("/api/workouts/:id", (req, res) => {
+
+
+
     Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } }, { new: true, runValidators: true })
-        .then(() => res.sendStatus(200))
+        // .then(() => res.sendStatus(200))
+        .then((data) => res.json(data))
+
         .catch(e => console.error(e))
 });
+
 app.listen(3000, () => {
     console.log(`App running on ${PORT}`);
 });
