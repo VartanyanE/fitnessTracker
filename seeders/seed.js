@@ -1,12 +1,13 @@
 let mongoose = require("mongoose");
 let db = require("../models");
+require('dotenv').config();
 
 
-mongoose.connect("mongodb://heroku_f0h2zbhm:k7d83i3l3jl32pn5res0i6gvjd@ds147551.mlab.com:47551/heroku_f0h2zbhm", {
+const mongo = process.env.MONGODB_URI || "mongodb://mongouser:lakers323@ds147551.mlab.com:47551/heroku_f0h2zbhm";
+mongoose.connect(mongo, {
   useNewUrlParser: true,
   useFindAndModify: false
 });
-
 let workoutSeed = [
   {
     day: new Date().setDate(new Date().getDate() - 10),
