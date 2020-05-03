@@ -1,6 +1,6 @@
 {
-    "name": "Images App",
-    "short_name": "Images App",
+    "name": "Fitness Tracker",
+    "short_name": "Fitness Tracker",
     "icons": [
         {
             "src": "img/icons/icon-72x72.png",
@@ -43,8 +43,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#fff",
+    "background_color": "#fff",
     "start_url": "/",
     "display": "standalone"
 }
