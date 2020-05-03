@@ -67,6 +67,6 @@ app.put("/api/workouts/:id", (req, res) => {
         .catch(e => console.error(e))
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`App running on ${PORT}`);
 });
